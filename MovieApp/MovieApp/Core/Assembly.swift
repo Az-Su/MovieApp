@@ -13,7 +13,7 @@ final class Assembly {
     private init() {}
     
     func tabBarController() -> UIViewController {
-        let tabbar = UITabBarController()
+        let tabBar = UITabBarController()
         
         let mainVC = UINavigationController(rootViewController: MainViewController())
         mainVC.tabBarItem = UITabBarItem(title: "Main", image: UIImage(systemName: "film"), tag: 0)
@@ -27,11 +27,11 @@ final class Assembly {
         let profileVC = UINavigationController(rootViewController: ProfileViewController())
         profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person"), tag: 3)
 
-        tabbar.viewControllers = [mainVC, placesVC, ticketsVC, profileVC]
-        tabbar.tabBarItem.imageInsets = .init(top: 5, left: 0, bottom: -5, right: 0)
-        tabbar.tabBar.barTintColor = .backgroundGray
-        tabbar.tabBar.backgroundColor = .backgroundGray
+        tabBar.setViewControllers([mainVC, placesVC, ticketsVC, profileVC], animated: true)
+        tabBar.tabBarItem.imageInsets = .init(top: 5, left: 0, bottom: -5, right: 0)
+        tabBar.tabBar.barTintColor = .backgroundGray
+        tabBar.tabBar.backgroundColor = .backgroundGray
 
-        return tabbar
+        return tabBar
     }
 }

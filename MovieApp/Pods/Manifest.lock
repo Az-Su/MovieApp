@@ -1,20 +1,24 @@
 PODS:
+  - Kingfisher (7.6.0)
   - lottie-ios (3.5.0)
   - SnapKit (5.6.0)
 
 DEPENDENCIES:
+  - Kingfisher
   - lottie-ios
   - SnapKit
 
 SPEC REPOS:
   trunk:
+    - Kingfisher
     - lottie-ios
     - SnapKit
 
 SPEC CHECKSUMS:
+  Kingfisher: b9bb0cd6907813593db268be80ddb931423c33b2
   lottie-ios: c55158d67d0629a260625cc2ded2052b829e3c3e
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
 
-PODFILE CHECKSUM: ab91b5f8f26829bb7d6509710689e3b86cfbaecc
+PODFILE CHECKSUM: 7cc3caac23fbdc94d0e6059eac2e6306ce85e42a
 
 COCOAPODS: 1.11.3
