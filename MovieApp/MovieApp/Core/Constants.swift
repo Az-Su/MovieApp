@@ -6,11 +6,12 @@
 //
 
 import Foundation
+import UIKit
 
 struct Constants {
     
     struct Keys {
-        static let api = "b546d4933841b9453fa9ccabe482d1a8"
+        static let api = "b6e80992124a3aacbadb112ae8ab8e5f"
     }
     
     struct Identifiers {
@@ -21,11 +22,8 @@ struct Constants {
     }
     
     struct Values {
+        static let screenHeight = UIScreen.main.bounds.height
         static let urlList = [URLs.trending, URLs.nowPlaying, URLs.popular, URLs.topRated, URLs.upcoming]
-    }
-    
-    struct Colors {
-        
     }
     
     struct Links {
@@ -49,4 +47,8 @@ enum Category: String, CaseIterable {
     case popular = "🎥Popular"
     case topRated = "📺Top Rated"
     case upcoming = "🍿Upcoming"
+}
+
+enum RequestType {
+    case movie, genre
 }

@@ -9,7 +9,11 @@ import UIKit
 
 final class MovieTableCollectionViewCell: UITableViewCell {
     
+    var apiCaller: APICaller?
+    var navigationController: UINavigationController?
+    
     private var movieList: [MovieModel] = []
+    private var genreList: [Int:String] = [:]
     
     private lazy var movieCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -34,8 +38,9 @@ final class MovieTableCollectionViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with movieList: [MovieModel]) {
+    func configure(with movieList: [MovieModel], and genreList: [Int:String]) {
         self.movieList = movieList
+        self.genreList = genreList
         DispatchQueue.main.async {
             self.movieCollectionView.reloadData()
         }
@@ -45,31 +50,38 @@ final class MovieTableCollectionViewCell: UITableViewCell {
 //MARK: - Collection view data source and delegate methods
 
 extension MovieTableCollectionViewCell: UICollectionViewDataSource {
-   
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return movieList.count
-        return 10
+        return movieList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.Identifiers.movieCollectionViewCell, for: indexPath) as! MovieCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCollectionViewCell.typeName, for: indexPath) as! MovieCollectionViewCell
         cell.clipsToBounds = true
-//        cell.configure(with: movieList[indexPath.row])
+        cell.configure(with: movieList[indexPath.row], and: genreList)
         return cell
     }
 }
 
 extension MovieTableCollectionViewCell: UICollectionViewDelegateFlowLayout {
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let height = collectionView.frame.size.height
         return CGSize(width: height/2, height: height)
     }
 }
 
+extension MovieTableCollectionViewCell: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = DetailsViewController()
+        vc.apiCaller = self.apiCaller
+        vc.configure(with: movieList[indexPath.item].id)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
 //MARK: - Setup views and constraints
 
-extension MovieTableCollectionViewCell {
+private extension MovieTableCollectionViewCell {
+    
     func setupViews() {
         contentView.addSubview(movieCollectionView)
     }
