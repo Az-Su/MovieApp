@@ -114,6 +114,7 @@ extension MainViewController: UICollectionViewDataSource {
             cell.clipsToBounds = true
             return cell
         }
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TrendingCollectionViewCell.typeName, for: indexPath) as! TrendingCollectionViewCell
         cell.configure(with: allMoviesList[0][indexPath.item].backdropPath)
         cell.layer.cornerRadius = 10
@@ -167,7 +168,7 @@ extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = SectionHeaderView()
         let title = String(categoryList[section].rawValue.dropFirst())
-        view.configure(with: title, number: 6)
+        view.configure(with: title, number: allMoviesList[0].count)
         return view
     }
     
